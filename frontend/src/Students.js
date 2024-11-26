@@ -13,7 +13,8 @@ const StudentsTable = () => {
 
   const fetchStudents = async (page, size) => {
     try {
-      const response = await fetch(`http://localhost:8000/students?page=${page}&size=${size}`);
+      const API_URL = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${API_URL}/students?page=${page}&size=${size}`);
       const responseJson = await response.json();
 
       setStudents(responseJson.data);
