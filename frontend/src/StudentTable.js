@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./StudentTable.css"
 
-const StudentsTable = () => {
+const StudentsTable = ({ someChange }) => {
   const [students, setStudents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -9,7 +9,7 @@ const StudentsTable = () => {
 
   useEffect(() => {
     fetchStudents(currentPage, pageSize);
-  }, [currentPage, pageSize]);
+  }, [currentPage, pageSize, someChange]);
 
   const fetchStudents = async (page, size) => {
     try {

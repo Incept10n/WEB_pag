@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "./AddStudent.css"
 
-const AddStudent = () => {
+const AddStudent = ({ onChange }) => {
     const [formData, setFormData] = useState({
         surname: "",
         name: "",
@@ -39,6 +40,7 @@ const AddStudent = () => {
             const data = await response.json();
             setResponseMessage("Student added successfully!");
             console.log("Response:", data);
+            onChange( prev => prev + 1 )
         } catch (error) {
             setErrorMessage(`Failed to add student: ${error.message}`);
             console.error("Error:", error);

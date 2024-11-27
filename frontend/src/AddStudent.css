@@ -1,0 +1,68 @@
+/* CSS for AddStudent Component */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 14px;
+  margin-right: 10px;
+  display: block;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: calc(100% - 20px);
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 3px rgba(76, 175, 80, 0.5);
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+p {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+p[style="color: green"] {
+  color: #4CAF50;
+}
+
+p[style="color: red"] {
+  color: #f44336;
+}

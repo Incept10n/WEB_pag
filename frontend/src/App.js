@@ -1,11 +1,21 @@
-import StudentsTable from "./Students";
+import StudentsTable from "./StudentTable"
 import AddStudent from "./AddStudent";
+import DeleteStudent from "./DeleteStudent";
+import { useState } from "react";
 
 function App() {
+
+  const [someChange, setSomeChange] = useState(0)
+
   return (
     <>
-    <StudentsTable />
-    <AddStudent />
+      <StudentsTable someChange={someChange} />
+      <div style={{ display: "flex", gap: "10px" }}>
+        <AddStudent onChange={setSomeChange} someChange={someChange} />
+        <DeleteStudent onChange={setSomeChange} />
+      </div>
+      {/* <AddStudent onChange={setSomeChange} />
+      <DeleteStudent onChange={setSomeChange} /> */}
     </>
   );
 }
