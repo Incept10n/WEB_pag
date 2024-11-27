@@ -1,3 +1,4 @@
+from schema import CreateStudentRequest, UpdateStudentRequest
 from service.services.DbService import DbService
 from fastapi import Depends, FastAPI, Query
 from sqlalchemy.orm import Session
@@ -22,3 +23,16 @@ async def get_students(
     db: Session = Depends(get_db)
 ):
     return dbService.getStudents(page, size, db)
+
+@app.post("/students/add")
+async def create_student(student: CreateStudentRequest, db: Session = Depends(get_db)):
+    return dbService.createStudent(student, db)
+
+@app.delete("/students/delete/{student_id}")
+async def delete_student(student_id: int, db: Session = Depends(get_db)):
+    return dbService.deleteStudent(student_id, db)
+
+@app.patch("/students/update/{student_id}")
+async def update_student(student_id: int, student: UpdateStudentRequest, db: Session = Depends(get_db)):
+    return dbService.updateStudent(student_id, student, db) 
+    
