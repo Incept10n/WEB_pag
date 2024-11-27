@@ -1,6 +1,7 @@
 import StudentsTable from "./StudentTable"
 import AddStudent from "./AddStudent";
 import DeleteStudent from "./DeleteStudent";
+import UpdateStudent from "./UpdateStudent";
 import { useState } from "react";
 
 function App() {
@@ -10,12 +11,11 @@ function App() {
   return (
     <>
       <StudentsTable someChange={someChange} />
-      <div style={{ display: "flex", gap: "10px" }}>
-        <AddStudent onChange={setSomeChange} someChange={someChange} />
+      <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+        <AddStudent onChange={setSomeChange} />
         <DeleteStudent onChange={setSomeChange} />
+        <UpdateStudent onChange={setSomeChange} />
       </div>
-      {/* <AddStudent onChange={setSomeChange} />
-      <DeleteStudent onChange={setSomeChange} /> */}
     </>
   );
 }
