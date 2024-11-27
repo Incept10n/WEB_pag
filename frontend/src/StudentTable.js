@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
-import "./StudentTable.css"
+import "./StudentTable.css";
 
 const StudentsTable = ({ someChange }) => {
   const [students, setStudents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [total, setTotal] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [sortBy, setSortBy] = useState(null);
+  const [order, setOrder] = useState("asc");
 
   useEffect(() => {
-    fetchStudents(currentPage, pageSize);
-  }, [currentPage, pageSize, someChange]);
+    fetchStudents(currentPage, pageSize, sortBy, order);
+  }, [currentPage, pageSize, sortBy, order, someChange]);
 
-  const fetchStudents = async (page, size) => {
+  const fetchStudents = async (page, size, sort, ord) => {
     try {
       const API_URL = process.env.REACT_APP_API_URL;
-      const response = await fetch(`${API_URL}/students?page=${page}&size=${size}`);
+      const response = await fetch(
+        `${API_URL}/students/filter?page=${page}&size=${size}&sort_by=${sort || ""}&order=${ord}`
+      );
       const responseJson = await response.json();
 
       setStudents(responseJson.data);
       setTotal(responseJson.meta.total_records);
-      console.log(responseJson.meta)
+      console.log(responseJson.meta);
     } catch (error) {
       console.error("Error fetching students:", error);
     }
@@ -31,10 +35,18 @@ const StudentsTable = ({ someChange }) => {
 
   const handlePageSizeChange = (event) => {
     setPageSize(parseInt(event.target.value, 10));
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
-  
+  const handleSort = (field) => {
+    if (sortBy === field) {
+      setOrder(order === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(field);
+      setOrder("asc"); 
+    }
+  };
+
   const totalPages = Math.ceil(total / pageSize);
 
   return (
@@ -43,13 +55,13 @@ const StudentsTable = ({ someChange }) => {
       <table border="1">
         <thead>
           <tr>
-            <th>id</th>
-            <th>surname</th>
-            <th>name</th>
-            <th>patronymic</th>
-            <th>course</th>
-            <th>group</th>
-            <th>faculty</th>
+            <th onClick={() => handleSort("id")}>id {sortBy === "id" ? (order === "asc" ? "↑" : "↓") : ""}</th>
+            <th onClick={() => handleSort("surname")}>surname {sortBy === "surname" ? (order === "asc" ? "↑" : "↓") : ""}</th>
+            <th onClick={() => handleSort("name")}>name {sortBy === "name" ? (order === "asc" ? "↑" : "↓") : ""}</th>
+            <th onClick={() => handleSort("patronymic")}>patronymic {sortBy === "patronymic" ? (order === "asc" ? "↑" : "↓") : ""}</th>
+            <th onClick={() => handleSort("course")}>course {sortBy === "course" ? (order === "asc" ? "↑" : "↓") : ""}</th>
+            <th onClick={() => handleSort("group")}>group {sortBy === "group" ? (order === "asc" ? "↑" : "↓") : ""}</th>
+            <th onClick={() => handleSort("faculty")}>faculty {sortBy === "faculty" ? (order === "asc" ? "↑" : "↓") : ""}</th>
           </tr>
         </thead>
         <tbody>

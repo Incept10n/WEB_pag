@@ -31,7 +31,6 @@ const UpdateStudent = ({ onChange }) => {
       });
 
       if (response.ok) {
-        const data = await response.json();
         setResponseMessage('Student updated successfully!');
         setErrorMessage('');
         onChange(prev => prev + 1)
