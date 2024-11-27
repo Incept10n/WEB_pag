@@ -1,7 +1,8 @@
+from typing import Optional
 from fastapi import Depends, Query, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from sqlalchemy import func, select
+from sqlalchemy import asc, desc, func, select
 from model.connectionDB import get_db
 from model.entities.students import Users 
 
@@ -60,3 +61,24 @@ class DbService:
         db.commit()
         db.refresh(existing_student)
         return {"message": f"Student with id {student_id} updated successfully", "student": existing_student}
+
+
+    def getFilteredStudents(self, page: int, size: int, sort_by: Optional[str], order: str, db: Session):
+        offset = (page - 1) * size
+        query = db.query(Users)
+        if sort_by:
+            if not hasattr(Users, sort_by):
+                raise HTTPException(status_code=400, detail=f"Invalid sort field: {sort_by}")
+            sort_order = asc if order == "asc" else desc
+            query = query.order_by(sort_order(getattr(Users, sort_by)))
+        total_records = query.count()
+        students = query.offset(offset).limit(size).all()
+        return {
+            "data": students,
+            "meta": {
+                "page": page,
+                "size": size,
+                "total_records": total_records,
+                "total_pages": (total_records + size - 1) // size,
+            },
+        }
