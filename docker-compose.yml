@@ -4,8 +4,6 @@ services:
   web-pag-api:
     build:
       context: ./api
-    ports: 
-      - "8000:8000"
     environment:
       - DATABASE_URL=postgresql://paguser:2143658790ADM+@web-pag-db/pagdb
     depends_on:
@@ -21,7 +19,15 @@ services:
     build:
       context: ./frontend
       args:
-        URL_FOR_CONNECT_TO_API: "http://localhost:8000" 
+        URL_FOR_CONNECT_TO_API: "http://localhost:80" 
+  
+  web-pag-proxy:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web-pag-frontend
+      - web-pag-api
     ports:
       - "80:80"
 
