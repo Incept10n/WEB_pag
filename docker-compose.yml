@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web-pag-api:
+    build:
+      context: ./api
+    ports: 
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://paguser:2143658790ADM+@web-pag-db/pagdb
+    depends_on:
+      - web-pag-db
+  
+  web-pag-db:
+    build:
+      context: ./db
+    volumes:
+      - pg_data:/var/lib/postgresql/data 
+
+  web-pag-frontend:
+    build:
+      context: ./frontend
+      args:
+        URL_FOR_CONNECT_TO_API: "http://localhost:8000" 
+    ports:
+      - "80:80"
+
+volumes:
+  pg_data:  

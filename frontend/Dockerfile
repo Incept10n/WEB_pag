@@ -1,4 +1,9 @@
-FROM node:18-slim as build
+ARG URL_FOR_CONNECT_TO_API=http://localhost:8000
+
+FROM node:18-slim AS build
+
+ARG URL_FOR_CONNECT_TO_API
+ENV REACT_APP_API_URL=${URL_FOR_CONNECT_TO_API}
 
 WORKDIR /app
 
