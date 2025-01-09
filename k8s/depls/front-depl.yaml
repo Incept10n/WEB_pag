@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  front-depl
+  namespace: default
+  labels:
+    app:  front-depl
+spec:
+  selector:
+    matchLabels:
+      app: front-depl
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app:  front-depl
+    spec:
+      containers:
+      - name:  front-depl
+        image:  incept1on999/web_pag:front
+        env:
+        - name: URL_FOR_CONNECT_TO_API
+          valueFrom:
+            configMapKeyRef:
+              name: front-configmap
+              key: URL_FOR_CONNECT_TO_API
+        ports:
+        - containerPort:  8080
+          name:  front-depl
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-service
+  namespace: default
+spec:
+  selector:
+    app: front-depl
+  type: ClusterIP
+  ports:
+  - name: front-service
+    protocol: TCP
+    port: 8080
+    targetPort: 8080 

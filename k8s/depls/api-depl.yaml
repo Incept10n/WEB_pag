@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  api
+  namespace: default
+  labels:
+    app:  api
+spec:
+  selector:
+    matchLabels:
+      app: api
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app:  api
+    spec:
+      containers:
+      - name:  api
+        image: incept1on999/web_pag:api 
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: api-secret
+              key: DATABASE_URL
+        ports:
+        - containerPort:  8000
+          name:  api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-service
+  namespace: default
+spec:
+  selector:
+    app: api
+  type: ClusterIP
+  ports:
+  - name: api-service
+    protocol: TCP
+    port: 8000
+    targetPort: 8000 

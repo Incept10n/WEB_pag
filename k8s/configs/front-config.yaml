@@ -1,0 +1,7 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: front-configmap
+  namespace: default
+data:
+  URL_FOR_CONNECT_TO_API: "http://localhost:80"

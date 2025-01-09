@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  psql-db
+  namespace: default
+  labels:
+    app:  psql-db
+spec:
+  selector:
+    matchLabels:
+      app: psql-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  psql-db
+    spec:
+      containers:
+      - name:  psql-db
+        image: incept1on999/web_pag:db
+        ports:
+        - containerPort: 5432 
+          name:  psql-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: psql-service
+  namespace: default
+spec:
+  selector:
+    app: psql-db
+  type: ClusterIP
+  ports:
+  - name: psql-service
+    protocol: TCP
+    port: 5432
+    targetPort: 5432
