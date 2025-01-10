@@ -18,6 +18,7 @@ spec:
       containers:
       - name:  psql-db
         image: incept1on999/web_pag:db
+        imagePullPolicy: Always
         ports:
         - containerPort: 5432 
           name:  psql-db

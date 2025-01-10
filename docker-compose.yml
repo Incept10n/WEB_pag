@@ -20,7 +20,7 @@ services:
     build:
       context: ./frontend
       args:
-        URL_FOR_CONNECT_TO_API: "http://localhost:80" 
+        URL_FOR_CONNECT_TO_API: "http://test.com:80" 
   
   web-pag-proxy:
     image: nginx:latest

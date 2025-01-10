@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: api
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -18,6 +18,7 @@ spec:
       containers:
       - name:  api
         image: incept1on999/web_pag:api 
+        imagePullPolicy: Always
         env:
         - name: DATABASE_URL
           valueFrom:

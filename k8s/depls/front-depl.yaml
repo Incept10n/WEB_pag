@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: front-depl
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -18,12 +18,7 @@ spec:
       containers:
       - name:  front-depl
         image:  incept1on999/web_pag:front
-        env:
-        - name: URL_FOR_CONNECT_TO_API
-          valueFrom:
-            configMapKeyRef:
-              name: front-configmap
-              key: URL_FOR_CONNECT_TO_API
+        imagePullPolicy: Always
         ports:
         - containerPort:  8080
           name:  front-depl

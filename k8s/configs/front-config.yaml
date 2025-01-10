@@ -4,4 +4,4 @@ metadata:
   name: front-configmap
   namespace: default
 data:
-  URL_FOR_CONNECT_TO_API: "http://localhost:80"
+  URL_FOR_CONNECT_TO_API: "http://test.com:80"

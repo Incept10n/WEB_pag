@@ -1,4 +1,4 @@
-ARG URL_FOR_CONNECT_TO_API=http://localhost:8000
+ARG URL_FOR_CONNECT_TO_API=http://test.com:80
 
 FROM node:18-slim AS build
 
