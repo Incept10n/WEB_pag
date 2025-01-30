@@ -1,0 +1,23 @@
+myhosts:
+  hosts:
+
+    master:
+      ansible_host: 192.168.50.5
+      ansible_user: master
+      ansible_password: master
+      ansible_become_password: master
+      ansible_connection: ssh
+
+    worker1:
+      ansible_host: 192.168.50.6
+      ansible_user: worker1
+      ansible_password: worker1
+      ansible_become_password: worker1
+      ansible_connection: ssh
+
+    worker2:
+      ansible_host: 192.168.50.7
+      ansible_user: worker2
+      ansible_password: worker2
+      ansible_become_password: worker2
+      ansible_connection: ssh

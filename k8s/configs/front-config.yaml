@@ -5,3 +5,5 @@ metadata:
   namespace: default
 data:
   URL_FOR_CONNECT_TO_API: "http://test.com:80"
+
+# This config is not needed (as was found out, because the URL is set during the build), but exists in a study way.
