@@ -14,7 +14,7 @@ The app was deployed on bare metal using kubernetes cluster that was configured 
 **CI/CD Pipeline**
 - GitHub Actions
   - build.yml: build and push 3 docker images to DockerHub in async way.
-  - deploy.yml: install kubectl and then deploy it to k8s cluster using KUBECONFIG.
+  - deploy.yml: install kubectl and then restart deployments in k8s cluster using KUBECONFIG.
 
 **Ansible files**
 
@@ -26,7 +26,7 @@ In "loadbalancer" folder there are two playbooks: one for apache, other for ngin
 
 **K8S files**
 
-You can notice, that I used NodePort type to expose the services. It was used because the cluster was behind the Proxy I set, that's why there is ingress.yaml file, I used it in local minikube setup, but for actual deployment i had to change files a bit. 
+You can notice, that I used NodePort type to expose the services. It was used because the cluster was behind the Proxy I set, that's why there is ingress.yaml file, I used it in local minikube setup, but for actual deployment I had to change files a bit. 
 
 ## P.S.
 
@@ -34,4 +34,4 @@ This app does not exist now as I practice a lot on the server and I need physica
 
 Some picture of the app: ]
 
-![Frontend of the app](https://drive.google.com/uc?export=view&id=1YcQKT-ClQSssP31b-prXhWUq_RodJp6F)
+![Frontend of the app](https://drive.google.com/uc?export=view&id=1Mk151MFIm2jQFz1DDNXHpWdJhDA5EC0O)
