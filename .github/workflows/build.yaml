@@ -1,4 +1,4 @@
-name: builds the app
+name: Build the app
 
 on:
   push:
