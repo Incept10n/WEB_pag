@@ -31,8 +31,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./frontend/Dockerfile 
+          context: ./frontend
           push: true
           tags: incept1on999/web_pag:front
           build-args: |
@@ -58,8 +57,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./api/Dockerfile 
+          context: ./api
           push: true
           tags: incept1on999/web_pag:api
 
@@ -83,7 +81,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./api/db
+          context: ./db
           push: true
           tags: incept1on999/web_pag:db
