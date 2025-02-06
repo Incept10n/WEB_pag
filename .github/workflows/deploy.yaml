@@ -25,8 +25,7 @@ jobs:
 
       - name: Authenticate with Kubernetes
         run: |
-          mkdir $HOME/.kube/config
-          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+          echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
 
       - name: Restart Deployments
         run: |
