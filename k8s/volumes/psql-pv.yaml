@@ -11,5 +11,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""  
   nfs:
-    path: /mnt/sharedir
-    server: 172.27.33.12
+    path: /home/nfs/share
+    server: 192.168.50.4

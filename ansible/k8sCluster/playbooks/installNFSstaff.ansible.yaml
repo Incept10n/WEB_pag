@@ -1,0 +1,7 @@
+- name: Install NFS staff
+  hosts: myhosts
+  become: true
+  tasks:
+    - name: Install nfs
+      ansible.builtin.shell: sudo apt install -y nfs-common # noqa: command-instead-of-shell
+      changed_when: false
