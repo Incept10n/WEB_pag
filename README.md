@@ -34,4 +34,4 @@ This app does not exist now as I practice a lot on the server and I need physica
 
 Some picture of the app: ]
 
-![Frontend of the app](https://drive.google.com/uc?export=view&id=1Mk151MFIm2jQFz1DDNXHpWdJhDA5EC0O)
+![Frontend of the app](https://drive.google.com/uc?export=view&id=12foz5r0UZ-lzvi3j5FIwHtIbKJAXZfNq)
