@@ -35,4 +35,4 @@ jobs:
           kubectl rollout restart deployment psql-db --insecure-skip-tls-verify
 
       - name: Verify Deployment Status
-        run: kubectl get pods -o wide
+        run: kubectl get pods -o wide --insecure-skip-tls-verify
